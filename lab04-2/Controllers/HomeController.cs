@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using lab04_2.ViewModels;
-using Microsoft.AspNet.Identity;
 
 namespace lab04_2.Controllers
 {
@@ -22,12 +21,14 @@ namespace lab04_2.Controllers
             var upCourse = _dbContext.Courses
                 .Include(c => c.Lecture)
                 .Include(c => c.Category)
-                .Where(c => c.DateTime > DateTime.Now);
+                .Where(c => c.DateTime < DateTime.Now);
             var viewModel = new CoursesViewModel
             {
                 UpCourses = upCourse,
                 ShowAction = User.Identity.IsAuthenticated
             };
+            //var viewModel = from t in _dbContext.Courses
+            //                select t;
             return View(viewModel);
         }
         

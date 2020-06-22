@@ -29,7 +29,7 @@ namespace lab04_2.Models
                 .WithMany()
                 .WillCascadeOnDelete(false);
             modelBuilder.Entity<ApplicationUser>()
-                .HasMany(u => u.Follower)
+                .HasMany(u => u.Followers)
                 .WithRequired(f => f.Followee)
                 .WillCascadeOnDelete(false);
 

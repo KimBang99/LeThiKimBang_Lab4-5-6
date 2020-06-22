@@ -20,7 +20,7 @@ namespace lab04_2.Controllers
         }
         // GET: Course
         [Authorize]
-
+        [HttpGet]
         public ActionResult Create()
         {
             var viewModel = new CourseView
@@ -32,6 +32,7 @@ namespace lab04_2.Controllers
         }
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CourseView viewModel)
         {
             if (!ModelState.IsValid)
@@ -115,5 +116,23 @@ namespace lab04_2.Controllers
             _dbContext.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
+
+        //[Authorize]
+        //public ActionResult Following()
+        //{
+        //    var userId = User.Identity.GetUserId();
+        //    var courses = _dbContext.Followings
+        //        .Where(a => a.FolloweeId == userId)
+        //        .Select(a => a.Ap)
+        //        .Include(l => l.Lecture)
+        //        .Include(l => l.Category)
+        //        .ToList();
+        //    var viewModel = new CoursesViewModel
+        //    {
+        //        UpCourses = courses,
+        //        ShowAction = User.Identity.IsAuthenticated
+        //    };
+        //    return View(viewModel);
+        //}
     }
 }

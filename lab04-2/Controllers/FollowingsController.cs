@@ -18,20 +18,22 @@ namespace lab04_2.Controllers
             dbContext = new ApplicationDbContext();
         }
 
-        [HttpPost]
-        public IHttpActionResult Follow(FollowingDto followingDto)
-        {
-            var userId = User.Identity.GetUserId();
-            if (dbContext.Followings.Any(f => f.FollowerId == userId && f.FolloweeId == followingDto.FolloweeId))
-                return BadRequest("Already exists!");
-            var following = new Following
-            {
-                FollowerId = userId,
-                FolloweeId = followingDto.FolloweeId
-            };
-            dbContext.Followings.Add(following);
-            dbContext.SaveChanges();
-            return Ok();
-        }
+        //[HttpPost]
+        //public IHttpActionResult Follow(FollowingDto followingDto)
+        //{
+        //    var userId = User.Identity.GetUserId();
+        //    if (dbContext.Followings.Any(f => f.FollowerId == userId && f.FolloweeId == followingDto.FolloweeId))
+        //        return BadRequest("Already exists!");
+        //    var following = new Following
+        //    {
+        //        FollowerId = userId,
+        //        FolloweeId = followingDto.FolloweeId
+        //    };
+        //    dbContext.Followings.Add(following);
+        //    dbContext.SaveChanges();
+        //    return Ok();
+        //}
+
+        
     }
 }
